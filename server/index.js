@@ -60,6 +60,7 @@ app.get("/", (req, res) => {
   res.send("Hello, Auto Spare Parts!");
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
+const PORT = process.env.PORT || 5000; // Use dynamic port for Render
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
