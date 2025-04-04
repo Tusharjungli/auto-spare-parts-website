@@ -12,7 +12,13 @@ function Navbar() {
               <input className="form-control me-2" placeholder="Year/Make/Model" />
             </li>
             <li className="nav-item">
-              <button className="btn btn-outline-light me-2">Cart</button>
+              <button
+                className="btn btn-outline-light me-2"
+                data-bs-toggle="modal"
+                data-bs-target="#cartModal"
+              >
+                Cart
+              </button>
             </li>
             <li className="nav-item">
               <button className="btn btn-outline-light">Boss Zone</button>
