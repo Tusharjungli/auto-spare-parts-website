@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
 import Confetti from 'react-confetti';
+import axios from 'axios';
 
 function Feedback() {
   const [showForm, setShowForm] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000); // Confetti for 5 seconds
+    axios.post('http://localhost:5000/api/feedback', formData)
+      .then(() => {
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 5000);
+      })
+      .catch(error => console.log(error));
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.placeholder.toLowerCase().replace("your ", "")]: e.target.value });
   };
 
   return (
@@ -25,13 +35,13 @@ function Feedback() {
           <h3>Tell Us What You Think</h3>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <input className="form-control" placeholder="Your Name" required />
+              <input className="form-control" placeholder="Your Name" onChange={handleChange} required />
             </div>
             <div className="mb-3">
-              <input className="form-control" type="email" placeholder="Your Email" required />
+              <input className="form-control" type="email" placeholder="Your Email" onChange={handleChange} required />
             </div>
             <div className="mb-3">
-              <textarea className="form-control" placeholder="Your Feedback" required></textarea>
+              <textarea className="form-control" placeholder="Your Message" onChange={handleChange} required></textarea>
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
             <button
