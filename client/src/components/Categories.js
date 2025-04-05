@@ -10,7 +10,7 @@ function Categories({ addToCart }) {
   const [priceFilter, setPriceFilter] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/products')
+    axios.get('https://auto-spare-parts-backend.onrender.com/api/products') // Replace with your Render URL
       .then(response => {
         setProducts(response.data);
         setFilteredProducts(response.data);

@@ -11,7 +11,7 @@ function Feedback() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/api/feedback', formData)
+    axios.post('https://auto-spare-parts-backend.onrender.com/api/feedback', formData) // Replace with your Render URL
       .then(() => {
         setSubmitted(true);
         setTimeout(() => setSubmitted(false), 5000);

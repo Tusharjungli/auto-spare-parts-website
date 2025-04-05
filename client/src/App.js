@@ -20,7 +20,7 @@ function App() {
   };
 
   const checkout = (total, cartItems) => {
-    axios.post('http://localhost:5000/api/create-order', {
+    axios.post('https://auto-spare-parts-backend.onrender.com/api/create-order', { // Replace with your Render URL
       amount: total,
       products: cartItems.map(item => ({ name: item.name, price: item.price })),
     })
